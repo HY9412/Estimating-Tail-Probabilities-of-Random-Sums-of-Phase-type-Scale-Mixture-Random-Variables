@@ -6,7 +6,7 @@ lambda1=3;                %Parameters of Erlang distribution
 nEr = 2;
 alpha_par=8; sig_par=1;   %Parameters of Pareto distribution
 k_par=1/alpha_par; sigma_par=sig_par/alpha_par; theta_par=sig_par;
-N1=10; N=10^5;
+N1=100; N=10^5;
 gammaU=linspace(1,150000,N1);%The threshold
 
 %% The following is conditional Asmussen--Kroese algorithm conditioning on scaling random variable
