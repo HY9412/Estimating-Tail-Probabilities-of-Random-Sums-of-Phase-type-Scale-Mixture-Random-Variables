@@ -4,7 +4,7 @@
 % Number of summands is bounded 
 % Take Weibull*Erlang for example
 clear all;clc;
-n1 = 10;    p1 = 0.02;                              % parameters of binomial distribution
+n1 = 10;    p1 = 0.2;                              % parameters of binomial distribution
 nEr = 2;    lambda1 = 3;                            % parameters of Erlang distribution
 a = 2;      b = 0.35;                               % parameters of scaling distribution
 N1 = 100;   N = 10^5;
