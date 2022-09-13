@@ -95,7 +95,8 @@ for j=1:length(gammaU)
             S5=sum(Y5_1.*Y5_2);MM5=max(Y5_1.*Y5_2);
             val5=max(MM5,gammaU(j)-S5);            
         end
-        lambdaISExp = 1/(gammaU(j)*(alpha_par-1)/alpha_par-nEr*(R5-1)/lambda1);
+        lambdaISExp = 1/(val5*(alpha_par-1)/alpha_par-nEr*(R5-1)/lambda1);
+%        lambdaISExp = 1/(gammaU(j)*(alpha_par-1)/alpha_par-nEr*(R5-1)/lambda1);
         Y2_conPHIS=exprnd(1/lambdaISExp);
         L5 = (lambda1/(lambda1-lambdaISExp))^nEr/lambdaISExp*gampdf(Y2_conPHIS,nEr,1/(lambda1-lambdaISExp));
         Y_conPHIS2(i)=(R5*gpcdf(val5/Y2_conPHIS,k_par,sigma_par,theta_par,'upper')-(R5-1/(1-rho)).*gpcdf(gammaU(j)/Y2_conPHIS,k_par,sigma_par,theta_par,'upper'))*L5;       
@@ -120,7 +121,8 @@ for j=1:length(gammaU)
             S4=sum(Y4_1.*Y4_2);MM4=max(Y4_1.*Y4_2);
             val4=max(MM4,gammaU(j)-S4);
         end
-        lambdaIS = 1/(gammaU(j)*(alpha_par-1)/nEr/alpha_par-((R4-1)/lambda1));
+        lambdaIS = 1/(val4*(alpha_par-1)/nEr/alpha_par-((R4-1)/lambda1));
+%        lambdaIS = 1/(gammaU(j)*(alpha_par-1)/nEr/alpha_par-((R4-1)/lambda1));
         Y2_conPHIS=gamrnd(nEr,1/lambdaIS);       
         L4 = (lambda1/lambdaIS)^nEr*exp(-(lambda1-lambdaIS).*Y2_conPHIS);
         Y_conPHIS(i)=(R4*gpcdf(val4/Y2_conPHIS,k_par,sigma_par,theta_par,'upper')-(R4-1/(1-rho)).*gpcdf(gammaU(j)/Y2_conPHIS,k_par,sigma_par,theta_par,'upper'))*L4;
