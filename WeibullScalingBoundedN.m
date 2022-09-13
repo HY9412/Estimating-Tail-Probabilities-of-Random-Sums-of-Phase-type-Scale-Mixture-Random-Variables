@@ -54,8 +54,6 @@ for j=1:length(gammaU)
     ell_onWIS(j) = mean(Y_AtsComIS2);
     RE_onWIS(j) = std(Y_AtsComIS2)/sqrt(N)/ell_onWIS(j);
     LE_onWIS(j) = log(var(Y_AtsComIS2))/log(ell_onWIS(j)^2);
-    Tau4 = toc;
-    WNRV_onWIS(j) = Tau4*var(Y_AtsComIS2)/ell_onWIS(j)^2;
 end
 
 %% The following is ConAK algorithm conditional on Erlang
