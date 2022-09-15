@@ -47,7 +47,7 @@ for j=1:length(gammaU)
             S2=sum(Y2_1.*Y2_2);MM2=max(Y2_1.*Y2_2);
             val2=max(MM2,gammaU(j)-S2);           
         end
-        theta=1-R2./(alpha_par*log(val2*lambda1));
+        theta=1-R2./(alpha_par*log(gammaU(j)*lambda1));
         alpha_par1=alpha_par*(1-theta); k_par1=1/alpha_par1; sigma_par1=sig_par/alpha_par1;
         Y2conIS=gprnd(k_par1,sigma_par1,theta_par);
         Y_conWIS(i)=(R2*gamcdf(val2/Y2conIS,nEr,1/lambda1,'upper')-(R2-1/(1-rho)).*gamcdf(gammaU(j)/Y2conIS,nEr,1/lambda1,'upper'))*(Y2conIS^(-theta*alpha_par))*(1/(1-theta));
@@ -95,8 +95,8 @@ for j=1:length(gammaU)
             S5=sum(Y5_1.*Y5_2);MM5=max(Y5_1.*Y5_2);
             val5=max(MM5,gammaU(j)-S5);            
         end
-        lambdaISExp = 1/(val5*(alpha_par-1)/alpha_par-nEr*(R5-1)/lambda1);
-%        lambdaISExp = 1/(gammaU(j)*(alpha_par-1)/alpha_par-nEr*(R5-1)/lambda1);
+        lambdaISExp = 1/(val5*(alpha_par-1)/alpha_par);
+%        lambdaISExp = 1/(gammaU(j)*(alpha_par-1)/alpha_par);
         Y2_conPHIS=exprnd(1/lambdaISExp);
         L5 = (lambda1/(lambda1-lambdaISExp))^nEr/lambdaISExp*gampdf(Y2_conPHIS,nEr,1/(lambda1-lambdaISExp));
         Y_conPHIS2(i)=(R5*gpcdf(val5/Y2_conPHIS,k_par,sigma_par,theta_par,'upper')-(R5-1/(1-rho)).*gpcdf(gammaU(j)/Y2_conPHIS,k_par,sigma_par,theta_par,'upper'))*L5;       
@@ -121,8 +121,8 @@ for j=1:length(gammaU)
             S4=sum(Y4_1.*Y4_2);MM4=max(Y4_1.*Y4_2);
             val4=max(MM4,gammaU(j)-S4);
         end
-        lambdaIS = 1/(val4*(alpha_par-1)/nEr/alpha_par-((R4-1)/lambda1));
-%        lambdaIS = 1/(gammaU(j)*(alpha_par-1)/nEr/alpha_par-((R4-1)/lambda1));
+        lambdaIS = 1/(val4*(alpha_par-1)/nEr/alpha_par);
+%        lambdaIS = 1/(gammaU(j)*(alpha_par-1)/nEr/alpha_par);
         Y2_conPHIS=gamrnd(nEr,1/lambdaIS);       
         L4 = (lambda1/lambdaIS)^nEr*exp(-(lambda1-lambdaIS).*Y2_conPHIS);
         Y_conPHIS(i)=(R4*gpcdf(val4/Y2_conPHIS,k_par,sigma_par,theta_par,'upper')-(R4-1/(1-rho)).*gpcdf(gammaU(j)/Y2_conPHIS,k_par,sigma_par,theta_par,'upper'))*L4;
