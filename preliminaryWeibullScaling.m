@@ -73,7 +73,7 @@ for j=1:length(gammaU)
             SSIS=sum(Y_11IS.*Y_22IS);MMM=max(Y_11IS.*Y_22IS);
             val1IS=max(MMM,gammaU(j)-SSIS);
         end
-        lambdaIS2 = nEr*(1/(1-rho))*(a*gamma(1+1/b))/gammaU(j);
+        lambdaIS2 = nEr*(a*gamma(1+1/b))/val1IS;
         YtsIS=gamrnd(nEr,1/lambdaIS2);
         LogL2 = nEr*log(lambda1)-nEr*log(lambdaIS2)-(lambda1-lambdaIS2)*YtsIS;
         L2 = exp(LogL2);
@@ -101,7 +101,7 @@ for j=1:length(gammaU)
             SSISCV=sum(Y_11ISCV.*Y_22ISCV);MMMISCV=max(Y_11ISCV.*Y_22ISCV);
             val1ISCV=max(MMMISCV,gammaU(j)-SSISCV);
         end        
-        lambdaIS2CV(j) = nEr*(1/(1-rho))*(a*gamma(1+1/b))./gammaU(j);    
+        lambdaIS2CV(j) = nEr*(a*gamma(1+1/b))./val1ISCV;    
         YtsISCV=gamrnd(nEr,1/lambdaIS2CV(j));
         LogL2CV = nEr*log(lambda1)-nEr*log(lambdaIS2CV(j))-(lambda1-lambdaIS2CV(j))*YtsISCV;
         L2CV = exp(LogL2CV);        
